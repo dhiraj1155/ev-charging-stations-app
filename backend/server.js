@@ -17,6 +17,7 @@ app.use(cors({ origin: 'https://ev-charging-stations-app-3ghb.vercel.app/' }));
 
 // Routes
 // app.use(express.static(path.join(__dirname, 'frontend/dist')));
+app.get('/', (req, res) => res.send('EV Charging Station API')); // Add root route
 app.use('/api/auth', authRoutes);
 app.use('/api/chargers', chargerRoutes);
 
