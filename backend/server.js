@@ -16,13 +16,13 @@ app.use(express.json());
 app.use(cors({ origin: 'https://ev-charging-stations-app-3ghb.vercel.app/' }));
 
 // Routes
-app.use(express.static(path.join(__dirname, 'frontend/dist')));
+// app.use(express.static(path.join(__dirname, 'frontend/dist')));
 app.use('/api/auth', authRoutes);
 app.use('/api/chargers', chargerRoutes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
+// });
 
 // MongoDB Connection
 const connectDB = require('./config/db');
