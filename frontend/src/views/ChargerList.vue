@@ -40,7 +40,6 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <select
           v-model="filters.status"
-          @change="applyFilters"
           class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
         >
           <option value="">All Statuses</option>
@@ -49,20 +48,21 @@
         </select>
 
         <input
-          v-model="filters.powerOutput"
+          v-model.number="filters.powerOutput"
           type="number"
           placeholder="⚡ Min Power Output (kW)"
           class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-          @input="applyFilters"
         />
 
-        <input
+        <select
           v-model="filters.connectorType"
-          type="text"
-          placeholder="🔌 Connector Type"
           class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-          @input="applyFilters"
-        />
+        >
+          <option value="">All Connector Types</option>
+          <option v-for="type in connectorTypes" :key="type" :value="type">
+            {{ type }}
+          </option>
+        </select>
       </div>
     </div>
 
@@ -96,6 +96,12 @@ export default {
         powerOutput: '',
         connectorType: '',
       },
+      connectorTypes: [
+        '⚡ CCS (Combined Charging System)',
+        '🔋 CHAdeMO',
+        '🛢️ Type 2 (Mennekes)',
+        '🚗 Tesla Supercharger',
+      ],
       stats: {
         total: 0,
         active: 0,
@@ -114,9 +120,7 @@ export default {
         chargers = chargers.filter((c) => c.powerOutput >= this.filters.powerOutput);
       }
       if (this.filters.connectorType) {
-        chargers = chargers.filter((c) =>
-          c.connectorType.toLowerCase().includes(this.filters.connectorType.toLowerCase())
-        );
+        chargers = chargers.filter((c) => c.connectorType === this.filters.connectorType);
       }
       return chargers;
     },
@@ -150,15 +154,6 @@ export default {
       } catch (error) {
         console.error('Error deleting charger:', error);
       }
-    },
-    applyFilters() {
-      this.$store.dispatch('fetchChargers').then(() => {
-        this.calculateStats();
-      });
-    },
-    logout() {
-      this.$store.dispatch('logout');
-      this.$router.push('/');
     },
     calculateStats() {
       const chargers = this.$store.state.chargers;
