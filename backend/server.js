@@ -46,10 +46,13 @@ const express = require('express');
   const app = express();
 
   // Allow specific frontend origins
-  const allowedOrigins = [
-    'https://ev-charging-stations-app-3ghb.vercel.app',
-    'https://ev-charging-stations-app-3ghb-o2l3dcnex-dhiraj1155s-projects.vercel.app',
-  ];
+const allowedOrigins = [
+  'https://ev-charging-stations-app-3ghb.vercel.app',
+  'https://ev-charging-stations-app-3ghb-o2l3dcnex-dhiraj1155s-projects.vercel.app',
+  'http://localhost:5002',
+  'http://localhost:8080' // 👈 Add this line
+];
+
 
   app.use(cors({
     origin: (origin, callback) => {

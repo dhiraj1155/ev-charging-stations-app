@@ -1,0 +1,156 @@
+{
+  "info": {
+    "name": "EV Charging Station API",
+    "_postman_id": "7f3b2d7e-4e8f-4f4e-9a8c-4e5c1b2d3e4f",
+    "description": "API collection for testing the EV Charging Station Management App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\":\"testuser\",\"password\":\"password123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\":\"testuser\",\"password\":\"password123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chargers",
+      "item": [
+        {
+          "name": "Get All Chargers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/chargers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "chargers"]
+            }
+          }
+        },
+        {
+          "name": "Create Charger",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Test Charger\",\"location\":{\"latitude\":37.7749,\"longitude\":-122.4194},\"status\":\"Active\",\"powerOutput\":50,\"connectorType\":\"Type 2\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/chargers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "chargers"]
+            }
+          }
+        },
+        {
+          "name": "Update Charger",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Updated Charger\",\"location\":{\"latitude\":37.7749,\"longitude\":-122.4194},\"status\":\"Inactive\",\"powerOutput\":75,\"connectorType\":\"CCS\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/chargers/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "chargers", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Charger",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/chargers/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "chargers", ":id"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ev-charging-stations-app.onrender.com"
+    },
+    {
+      "key": "token",
+      "value": "aa1d3babc50499837c910d32b838f8528511c2f0a467b5dea40a7b6d0d46641a236e3b2be502a588415571ea196cd289f95a4825d7d1a6fdb066335a9d0819f9"
+    }
+  ]
+}

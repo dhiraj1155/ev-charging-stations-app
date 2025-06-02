@@ -1,21 +1,46 @@
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <nav v-if="$route.path !== '/'" class="bg-blue-500 p-4">
-      <div class="container mx-auto flex justify-between items-center">
-        <div class="text-white text-lg font-bold">EV Charging App</div>
-        <div class="space-x-4">
-          <router-link to="/chargers" class="text-white hover:underline">Charger List</router-link>
-          <router-link to="/map" class="text-white hover:underline">Map View</router-link>
+  <div class="min-h-screen bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <header v-if="$route.path !== '/'" class="sticky top-0 z-50 bg-gradient-to-r from-green-600 to-blue-500 shadow-md">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 text-white font-bold text-xl tracking-wide">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          VoltConnect
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex gap-4 items-center">
+          <router-link
+            to="/chargers"
+            class="text-white font-medium px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Charger List
+          </router-link>
+
+          <router-link
+            to="/map"
+            class="text-white font-medium px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Map View
+          </router-link>
+
           <button
             @click="logout"
-            class="text-white hover:underline"
+            class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded transition"
           >
             Logout
           </button>
-        </div>
+        </nav>
       </div>
-    </nav>
-    <router-view />
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-4">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -30,3 +55,9 @@ export default {
   },
 };
 </script>
+
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+}
+</style>

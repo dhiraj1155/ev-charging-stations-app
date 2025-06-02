@@ -1,43 +1,63 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-6 text-center">{{ isRegister ? 'Register' : 'Login' }}</h2>
-      <form @submit.prevent="handleSubmit">
-        <div class="mb-4">
-          <label class="block text-gray-700">Username</label>
+<div
+  class="min-h-screen flex items-center justify-center bg-cover bg-center px-4"
+  :style="{ backgroundImage: `url(${require('@/assets/ev-bg1.jpg')})` }"
+>
+
+    <div class="w-full max-w-md bg-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl p-8 sm:p-10 space-y-6">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-gray-800">
+          {{ isRegister ? 'Create an Account' : 'Welcome Back' }}
+        </h2>
+        <p class="text-sm text-gray-500 mt-2">
+          {{ isRegister ? 'Join the EV Revolution' : 'Power up your journey' }}
+        </p>
+      </div>
+
+      <form @submit.prevent="handleSubmit" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Username</label>
           <input
             v-model="form.username"
             type="text"
-            class="w-full p-2 border rounded"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none transition-all"
+            placeholder="Enter your username"
             required
           />
         </div>
-        <div class="mb-4">
-          <label class="block text-gray-700">Password</label>
+
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Password</label>
           <input
             v-model="form.password"
             type="password"
-            class="w-full p-2 border rounded"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none transition-all"
+            placeholder="Enter your password"
             required
           />
         </div>
+
         <button
           type="submit"
-          class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all shadow-lg"
         >
           {{ isRegister ? 'Register' : 'Login' }}
         </button>
-        <p class="mt-4 text-center">
-          <a
-            href="#"
-            class="text-blue-500"
+
+        <p class="text-center text-sm text-gray-600 mt-2">
+          <button
+            type="button"
             @click="isRegister = !isRegister"
+            class="text-green-500 hover:text-green-700 font-medium transition-all"
           >
             {{ isRegister ? 'Already have an account? Login' : 'Need an account? Register' }}
-          </a>
+          </button>
+        </p>
+
+        <p v-if="error" class="text-center text-red-500 text-sm animate-pulse mt-2">
+          {{ error }}
         </p>
       </form>
-      <p v-if="error" class="text-red-500 mt-4 text-center">{{ error }}</p>
     </div>
   </div>
 </template>
