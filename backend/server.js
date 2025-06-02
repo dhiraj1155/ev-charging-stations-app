@@ -8,21 +8,25 @@ require('dotenv').config();
 const app = express();
 
 // CORS configuration
-const allowedOrigins = [
-  'https://ev-charging-stations-app-3ghb.vercel.app',
-  'https://ev-charging-stations-app-3ghb-o2l3dcnex-dhiraj1155-e-projects.vercel.app',
-  'https://ev-charging-stations-app-3ghb-k117fgctx-dhiraj1155s-projects.vercel.app',
-  'http://localhost:5173',
-  'http://localhost:8080'
-];
-
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // Allow requests with no origin (e.g., server-to-server, Postman)
+    if (!origin) return callback(null, true);
+
+    // Allow local development
+    const localOrigins = ['http://localhost:5173', 'http://localhost:8080'];
+    if (localOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    // Allow Vercel origins dynamically
+    const vercelOriginRegex = /^https:\/\/ev-charging-stations-app-3ghb(-[a-z0-9]+)?\.vercel\.app$/;
+    if (vercelOriginRegex.test(origin)) {
+      return callback(null, true);
+    }
+
+    // Deny other origins
+    callback(new Error(`CORS policy: Origin ${origin} not allowed`));
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
