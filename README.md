@@ -1,6 +1,6 @@
 # EV Charging Station Management App
 
-Welcome to the **EV Charging Station Management App**, a modern, user-friendly platform for managing electric vehicle (EV) charging stations. Built with Vue 3, Pinia, Tailwind CSS, and Express.js, this app offers a **beautiful, intuitive, and robust** interface with glassmorphic design, teal-purple gradients, Poppins font, and smooth GSAP/Lottie animations. Deployed on Vercel (frontend) and Render (backend), it provides seamless authentication, charger management, and a responsive dashboard.
+Welcome to the **EV Charging Station Management App**, a modern, user-friendly platform for managing electric vehicle (EV) charging stations. Built with Vue 3, vuex, Tailwind CSS, and Express.js, this app offers a **beautiful, intuitive, and robust** interface with glassmorphic design, teal-purple gradients, Poppins font, and smooth GSAP/Lottie animations. Deployed on Vercel (frontend) and Render (backend), it provides seamless authentication, charger management, and a responsive dashboard.
 
 ## Features
 
@@ -17,11 +17,9 @@ Welcome to the **EV Charging Station Management App**, a modern, user-friendly p
 
 ### Frontend
 - **Vue 3**: Reactive and component-based framework.
-- **Pinia**: Lightweight state management.
 - **Vue Router**: Client-side routing.
 - **Tailwind CSS**: Utility-first CSS for styling.
 - **GSAP**: Smooth animations for UI elements.
-- **Lottie-Web**: Engaging loading animations.
 - **Vuelidate**: Form validation.
 - **Axios**: HTTP requests to the backend.
 - **Leaflet & MarkerCluster**: Map visualization.
@@ -85,14 +83,14 @@ ev-charging-app/
 - **npm**: v8 or higher.
 - **MongoDB**: Cloud (MongoDB Atlas) or local instance.
 - **Git**: For version control.
-- **Postman**: For API testing (optional).
+- **Postman**: For API testing.
 
 ## Setup Instructions
 
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ev-charging-app.git
+git clone https://github.com/dhiraj1155/ev-charging-stations-app.git
 cd ev-charging-app
 ```
 
@@ -111,16 +109,16 @@ cd ev-charging-app
 3. **Configure Environment**:
    - Create a `.env` file in `backend/`:
      ```
-     MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/ev-charging
+     MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/ev-charging
      JWT_SECRET=your_jwt_secret
-     PORT=3000
+     PORT=5000
      ```
 
 4. **Start Backend**:
    ```bash
    npm start
    ```
-   - Backend runs at `http://localhost:3000`.
+   - Backend runs at `http://localhost:5000`.
 
 ### Frontend Setup
 
@@ -173,7 +171,7 @@ cd ev-charging-app
    - Create a new Web Service on Render.
    - Link to your GitHub repo’s `backend` directory.
    - Set environment variables:
-     - `MONGODB_URI`
+     - `MONGO_URI`
      - `JWT_SECRET`
      - `PORT=3000`
    - Set build command: `npm install`
@@ -203,7 +201,7 @@ cd ev-charging-app
 
 1. **Access the App**:
    - Open `http://localhost:8080` (local) or `https://ev-charging-stations-app-3ghb-*.vercel.app` (deployed).
-   - Register or log in via `/auth`.
+   - Register or log in via `/login`.
 
 2. **Manage Chargers**:
    - Navigate to `/chargers` for the dashboard.
@@ -215,15 +213,8 @@ cd ev-charging-app
    - Visit `/map` to see charger locations (WIP).
 
 4. **Logout**:
-   - Click the logout button in the navbar to return to `/auth`.
+   - Click the logout button in the navbar to return to `/login`.
 
-## Screenshots
-
-![Login Screen](screenshots/auth.png)
-*Glassmorphic login form with Lottie animation.*
-
-![Dashboard](screenshots/charger-dashboard.png)
-*Glassmorphic stats cards and charger list with GSAP animations.*
 
 ## Troubleshooting
 
@@ -244,12 +235,9 @@ cd ev-charging-app
   - Check logs: `/Users/apple/.npm/_logs/*.log`.
 
 - **API Errors**:
-  - Verify `MONGODB_URI` and `JWT_SECRET` in `backend/.env`.
+  - Verify `MONGO_URI` and `JWT_SECRET` in `backend/.env`.
   - Test endpoints with Postman.
 
-- **UI Issues**:
-  - Ensure `frontend/public/img/logo.svg` and `loading.json` exist.
-  - Check `index.css` and `tailwind.config.js` for glassmorphic styles.
 
 ## Contributing
 
@@ -259,25 +247,14 @@ cd ev-charging-app
 4. Push to branch: `git push origin feature/your-feature`.
 5. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License.
-
-## Acknowledgements
-
-- **Flaticon**: EV logo (`logo.svg`).
-- **LottieFiles**: Loading animation (`loading.json`).
-- **Tailwind CSS**: Responsive styling.
-- **GSAP & Lottie-Web**: Smooth animations.
-- **Vercel & Render**: Hosting platforms.
 
 ## Contact
 
-For issues or feedback, open a GitHub issue or contact [your-email@example.com].
+For issues or feedback, open a GitHub issue or contact [dhirajwagh2004@gmail.com].
 
 ---
 
-**Live Demo**: [https://ev-charging-stations-app-3ghb-1v1gaumr5-dhiraj1155s-projects.vercel.app](https://ev-charging-stations-app-3ghb-1v1gaumr5-dhiraj1155s-projects.vercel.app)
+**Live Demo**: [https://ev-charging-stations-app-3ghb.vercel.app/]
 
 **API**: [https://ev-charging-stations-app.onrender.com](https://ev-charging-stations-app.onrender.com)
 
