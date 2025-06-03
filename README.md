@@ -41,40 +41,54 @@ Welcome to the **EV Charging Station Management App**, a modern, user-friendly p
 
 ```
 ev-charging-app/
-├── backend/
-│   ├── src/
-│   │   ├── routes/
-│   │   │   ├── auth.js
-│   │   │   └── chargers.js
-│   │   └── server.js
-│   ├── .env
-│   └── package.json
-├── frontend/
-│   ├── public/
-│   │   ├── img/
-│   │   │   ├── logo.svg
-│   │   │   └── loading.json
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ChargerCard.vue
-│   │   │   ├── ChargerForm.vue
-│   │   │   └── ErrorBoundary.vue
-│   │   ├── views/
-│   │   │   ├── Auth.vue
-│   │   │   ├── ChargerDashboard.vue
-│   │   │   └── MapView.vue
-│   │   ├── router/
-│   │   │   └── index.js
-│   │   ├── store/
-│   │   │   └── index.js
+.
+├── README.md
+├── backend
+│   ├── config
+│   │   └── db.js
+│   ├── controllers
+│   │   ├── authController.js
+│   │   └── chargerController.js
+│   ├── middleware
+│   │   └── authMiddleware.js
+│   ├── models
+│   │   ├── Charger.js
+│   │   └── User.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes
+│   │   ├── auth.js
+│   │   └── chargers.js
+│   └── server.js
+├── frontend
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   └── index.html
+│   ├── src
 │   │   ├── App.vue
+│   │   ├── assets
+│   │   │   ├── electric-station.png
+│   │   │   ├── ev-bg.jpg
+│   │   │   ├── ev-bg1.jpg
+│   │   ├── components
+│   │   │   ├── ChargerCard.vue
+│   │   │   └── ChargerForm.vue
 │   │   ├── index.css
 │   │   ├── main.js
-│   │   └── tailwind.config.js
-│   ├── .env
-│   └── package.json
-├── postman_collection.json
-└── README.md
+│   │   ├── router
+│   │   │   └── index.js
+│   │   ├── store
+│   │   │   └── index.js
+│   │   └── views
+│   │       ├── ChargerList.vue
+│   │       ├── Login.vue
+│   │       └── MapView.vue
+│   ├── tailwind.config.js
+│   └── vue.config.js
+├── package.json
+└── postman_collection.json
 ```
 
 ## Prerequisites
